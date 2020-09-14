@@ -13,17 +13,23 @@ public class AppUserController {
     @Autowired
     AppUserServiceImpl appUserService;
 
-    // 회원가입
-    @RequestMapping(method = RequestMethod.POST)
+    // 홈
+    @RequestMapping(name = "/home", method = RequestMethod.GET)
+    public String goHome(){
+        return "/home";
+    }
+
+    // 회원가입 - 요청
+    @RequestMapping(name = "/signUp", method = RequestMethod.POST)
     public String signUp(AppUser appUser){
         appUserService.insertAppUser(appUser);
         return "/login";
     }
 
-    // 홈
-    @RequestMapping(method = RequestMethod.GET)
-    public String goHome(){
-        return "/home";
+    // 회원가입 - 화면
+    @RequestMapping(name = "/signUp", method = RequestMethod.GET)
+    public String goSignUp(){
+        return "/signUp";
     }
 
 }
